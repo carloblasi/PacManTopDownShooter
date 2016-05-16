@@ -17,12 +17,6 @@ import java.io.ObjectInputStream;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.util.ArrayList;
-import java.util.Random;
-import java.awt.Point;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Scanner;
-import javax.swing.UIManager;
 
 public class Game extends BasicGame {
 
