@@ -1,2 +1,0 @@
-Game.test
-Game.Ball

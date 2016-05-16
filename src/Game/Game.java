@@ -103,8 +103,8 @@ public class Game extends BasicGame {
         }
         //getSystemLookAndFeel();
         AppGameContainer app = new AppGameContainer(new Game("Pac Man: The Top Down Shooter"));
-        app.setDisplayMode(1280, 800, true);
-        //app.setDisplayMode(Window.WIDTH, Window.HEIGHT, true);
+        //app.setDisplayMode(1280, 800, true);
+        app.setDisplayMode(Window.WIDTH, Window.HEIGHT, true);
         app.start();
     }
 
