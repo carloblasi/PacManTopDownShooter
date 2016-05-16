@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.4
+Created-By: 1.7.0_65-b19 (Oracle Corporation)
+
+Name: libjinput-linux64.so
+SHA-256-Digest: huZQ9HeQ54lpanpYCUYetLUD9fhB4XSIqn7lob7cBaY=
+
+Name: libopenal.so
+SHA-256-Digest: G40mvfeZoUAF5MPiC2fERJxI1L9rtR6HFSJmmzUdIMo=
+
+Name: libopenal64.so
+SHA-256-Digest: JlMQuE4/vCkjVK2ZAUJaT2Uy6MP3MPNr6W7beQF0CRw=
+
+Name: liblwjgl.so
+SHA-256-Digest: tf2N+Xeb1ZHvX2drXTZpRy/AZRyaEa5CsRURq/DT13U=
+
+Name: liblwjgl64.so
+SHA-256-Digest: YnRD2lsETmz5qwY+xmdtYmSfpq86dvEw6BXGppa6UQM=
+
+Name: libjinput-linux.so
+SHA-256-Digest: /3r3oTBkUUKMmOP1DFvy8Zu2y8WDVzCRfN11W4zGJtA=
+

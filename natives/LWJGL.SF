@@ -1,0 +1,24 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: 4qGIDsjmf8ZDczflwSf6tIdbOjZZq
+ 9qEfMQx6QzRtnQ=
+SHA-256-Digest-Manifest: qRTaHudCXHGHuHQv5vJF7357Gluvi1iSwjDiPeX3yUk=
+Created-By: 1.7.0_65 (Oracle Corporation)
+
+Name: libjinput-linux64.so
+SHA-256-Digest: itlSELYUl2J5ZHFgLvq6aAxOZZzqbgQ/fW6jAl3YIIE=
+
+Name: libopenal.so
+SHA-256-Digest: 0U453Eu3P7bW04w5a4axEou1oK4Y9e9F4b0I+NxtE2Q=
+
+Name: liblwjgl.so
+SHA-256-Digest: iGLPyAWEZoixjHqD8Fzw/uJpmseIyJHED0dVAfofLVc=
+
+Name: libopenal64.so
+SHA-256-Digest: LhU9lL5n5GOySYKN+uEJoDrM+AskIPBZ379T6iqZohw=
+
+Name: libjinput-linux.so
+SHA-256-Digest: AoLpC4NiRPwzC4qiJudMshQ0l33UD+NZSDl+myCTHDE=
+
+Name: liblwjgl64.so
+SHA-256-Digest: W+SoAfmDJO5KzTP9H4lSkCfw0l3fs09QFCK+R+KA33M=
+
