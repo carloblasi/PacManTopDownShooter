@@ -24,7 +24,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 import javax.swing.UIManager;
 
-public class Game extends BasicGame {
+
 
     static Input input;
     public static int mouseX, mouseY;
