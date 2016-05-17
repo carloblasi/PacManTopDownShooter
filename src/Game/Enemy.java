@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  *
@@ -91,6 +92,25 @@ public class Enemy {
      * @return true - se ha colliso con un proiettile, false altrimenti
      */
     public boolean isCollidingWithBullets(ArrayList<Bullet> bullets) {
+
+        Iterator<Bullet> iter = bullets.iterator();
+        while (iter.hasNext()) {
+
+            Bullet bullet = iter.next();
+            if (this.isAlive() && bullet.isFired())
+                if (Math.sqrt((bullet.getX() - this.getX()) * (bullet.getX() - this.getX()) +
+                              (bullet.getY() - this.getY()) * (bullet.getY() - this.getY())) <=
+                               this.radius + bullet.getRadius()) {
+
+                    Score.incrementScore();
+                    iter.remove();
+                    return true;
+                }
+        }
+        return false;
+    }
+
+        public boolean isCollidingWithBullets(LinkedList<Bullet> bullets) {
 
         Iterator<Bullet> iter = bullets.iterator();
         while (iter.hasNext()) {

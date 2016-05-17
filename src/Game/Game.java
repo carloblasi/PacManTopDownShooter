@@ -21,6 +21,7 @@ import java.util.Random;
 import java.awt.Point;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.LinkedList;
 import java.util.Scanner;
 import javax.swing.UIManager;
 
@@ -54,7 +55,7 @@ public class Game extends BasicGame {
     static Image[] ghosts = new Image[4];
     static ScoreManager Score;
 
-    static ArrayList<Bullet> bulletList = new ArrayList<>();
+    static LinkedList<Bullet> bulletList = new LinkedList<>();
     static ArrayList<Enemy> enemyList = new ArrayList<>();
     static Ammo[] ammos = new Ammo[10];
     static Player player;
