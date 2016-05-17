@@ -104,8 +104,8 @@ public class UDPServerThread extends Thread {
                 portMap.put(receivePacket.getPort(), receivePacket.getAddress());
                 clientsConnected = portMap.size();
 
-            } catch (IOException e) {
-                System.out.println("Server Error receiving ");
+            } catch (IOException | NullPointerException e) {
+                System.out.println("Server Error connecting new clients");
             }
         }
     }
