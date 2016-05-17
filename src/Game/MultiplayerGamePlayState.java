@@ -221,6 +221,7 @@ public class MultiplayerGamePlayState {
         opponentBulletList.clear();
         enemyList.clear();
         Score.resetScore();
+        Score.setScore(0);
         try {
             for (int i = 0; i < 24; i++) {
                 connection.send("3");
@@ -246,6 +247,7 @@ public class MultiplayerGamePlayState {
         opponentBulletList.clear();
         enemyList.clear();
         Score.resetScore();
+        Score.setScore(0);
         canCreateConnection = true;
         try {
             for (int i = 0; i < 24; i++) {
