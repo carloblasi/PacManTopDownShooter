@@ -25,6 +25,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import java.io.IOException;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import org.newdawn.slick.Color;
 
@@ -139,15 +140,19 @@ public class MultiplayerGamePlayState {
         synchronized(enemyList) {
 
             Iterator<Enemy> enemyIter = enemyList.iterator();
-            while (enemyIter.hasNext()) {
+            try {
+                while (enemyIter.hasNext()) {
 
-                Enemy enemy = enemyIter.next();
-                enemy.render();
-                if (enemy.isCollidingWithBullets(bulletList)) {
-                    enemyIter.remove();
-                } else if (enemy.isCollidingWithBullets(opponentBulletList)) {
-                    enemyIter.remove();
+                    Enemy enemy = enemyIter.next();
+                    enemy.render();
+                    if (enemy.isCollidingWithBullets(bulletList)) {
+                        enemyIter.remove();
+                    } else if (enemy.isCollidingWithBullets(opponentBulletList)) {
+                        enemyIter.remove();
+                    }
                 }
+            } catch (ConcurrentModificationException e) {
+                System.out.println("Error rendering enemies");
             }
         }
 
@@ -230,7 +235,7 @@ public class MultiplayerGamePlayState {
         Score.resetScore();
         canCreateConnection = true;
         try {
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 24; i++) {
                 connection.send("2");
             }
         } catch (IOException e) {
