@@ -79,14 +79,25 @@ public class Connection implements Runnable {
                 this.opponentPosition = new String(buffer, 0, packet.getLength());
 
                 //oppInfo = Info.deserialize(buffer);
+                switch (this.opponentPosition) {
 
-                if (this.opponentPosition.equals("2")) {
+                    case "2":
 
-                    MultiplayerGamePlayState.quitGame();
-                    this.stop();
-                }
-                else if (this.opponentPosition.equals("1")) {
-                    Game.opponentFired = true;
+                        MultiplayerGamePlayState.quitGame();
+                        break;
+
+                    case "3":
+
+                        MultiplayerGamePlayState.resetGame();
+                        break;
+
+                    case "1":
+
+                        Game.opponentFired = true;
+                        break;
+
+                    default:
+                        break;
                 }
 
             } catch (IOException e) {

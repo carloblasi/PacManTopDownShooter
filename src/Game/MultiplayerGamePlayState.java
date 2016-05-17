@@ -125,16 +125,21 @@ public class MultiplayerGamePlayState {
         synchronized(opponentBulletList) {
 
             Iterator<Bullet> oppIter = opponentBulletList.iterator();
-            synchronized(oppIter) {
-                while (oppIter.hasNext()) {
+            try {
+                synchronized (oppIter) {
+                    while (oppIter.hasNext()) {
 
-                    Bullet bullet = oppIter.next();
-                    synchronized(bullet) {
-                        bullet.render();
-                        if (bullet.isOutOfBounds(gc))
-                            oppIter.remove();
+                        Bullet bullet = oppIter.next();
+                        synchronized (bullet) {
+                            bullet.render();
+                            if (bullet.isOutOfBounds(gc)) {
+                                oppIter.remove();
+                            }
+                        }
                     }
                 }
+            } catch (ConcurrentModificationException e) {
+                System.out.println("Error rendering bullets");
             }
         }
         synchronized(enemyList) {
@@ -164,7 +169,7 @@ public class MultiplayerGamePlayState {
         try {
             connection.send("1");
         } catch (IOException e) {
-            System.out.println("ERROR WHILE SENDING NEW BULLET");
+            System.out.println("Error while sending new bullet");
         }
         bulletList.add(new Bullet(player.getX(), player.getY(), x, y));
     }
@@ -217,6 +222,13 @@ public class MultiplayerGamePlayState {
         opponentBulletList.clear();
         enemyList.clear();
         Score.resetScore();
+        try {
+            for (int i = 0; i < 24; i++) {
+                connection.send("3");
+            }
+        } catch (IOException e) {
+            System.out.println("ERROR WHILE SENDING END GAME");
+        }
         connection.stop();
         if (Game.isServer)
             server.close();
