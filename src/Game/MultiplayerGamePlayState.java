@@ -1,6 +1,6 @@
 package Game;
 
-import static Game.Game.STAR_DELAY;
+import static Game.Game.START_DELAY;
 import static Game.Game.BULLET_DELAY;
 import static Game.Game.ENEMY_DELAY;
 import static Game.Game.Score;
