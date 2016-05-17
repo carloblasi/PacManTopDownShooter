@@ -94,7 +94,7 @@ public class MultiplayerGamePlayState {
             }
 
             /// SENDING AND RECEIVING COORDINATES
-            infoString = "" + player.getX() + ":" + player.getY() + ":" + mouseX + ":" + mouseY + ":" + player.getHealth();
+            infoString = "" + player.getX() + ":" + player.getY() + ":" + mouseX + ":" + mouseY + ":" + player.getHealth() + ":" + Score.getScore();
             try {
                 connection.send(infoString);
             } catch (IOException e) {
@@ -179,13 +179,15 @@ public class MultiplayerGamePlayState {
     public static void getOpponentCoordinates() {
 
         String[] s = connection.getOpponentPosition().split(":");
-        if (s.length == 5) {
+        if (s.length == 6) {
 
             opponent.setHealth(Integer.parseInt(s[4]));
             opponentCoordinates.x = Integer.parseInt(s[0]);
             opponentCoordinates.y = Integer.parseInt(s[1]);
             opponentMouseCoordinates.x = Integer.parseInt(s[2]);
             opponentMouseCoordinates.y = Integer.parseInt(s[3]);
+            if (Score.getScore() > Integer.parseInt(s[5]))
+                Score.setScore(Integer.parseInt(s[5]));
         }
     }
 
