@@ -31,10 +31,8 @@ class UDPSenderThread extends Thread {
         try {
 
             byte[] data = new byte[1024];
-            data = "".getBytes();
+            data = "Connected".getBytes();
             DatagramPacket connectionPacket = new DatagramPacket(data, data.length, this.serverIPAddress, this.serverPort);
-            this.udpClientSocket.send(connectionPacket);
-            this.udpClientSocket.send(connectionPacket);
             this.udpClientSocket.send(connectionPacket);
             BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 

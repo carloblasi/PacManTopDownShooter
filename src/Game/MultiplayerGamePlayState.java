@@ -186,7 +186,7 @@ public class MultiplayerGamePlayState {
             opponentCoordinates.y = Integer.parseInt(s[1]);
             opponentMouseCoordinates.x = Integer.parseInt(s[2]);
             opponentMouseCoordinates.y = Integer.parseInt(s[3]);
-            if (Score.getScore() > Integer.parseInt(s[5]))
+            if (Score.getScore() < Integer.parseInt(s[5]))
                 Score.setScore(Integer.parseInt(s[5]));
         }
     }

@@ -96,8 +96,8 @@ public class UDPServerThread extends Thread {
                 System.out.println(clientMessage);
 
                 // Stampa stati connessione
-                System.out.println("Client connesso - indirizzo del socket: " + receivePacket.getSocketAddress());
-                System.out.println("Messaggio del client: \"" + clientMessage + "\"");
+                System.out.println("Client connected - socket address: " + receivePacket.getSocketAddress());
+                System.out.println("Client: \"" + clientMessage + "\"");
 
                 // Prende l'indirizzo da dove è arrivato il pacchetto e il numero di porta
                 // del client che ha inviato il pacchetto e lo aggiunge alla mappa
