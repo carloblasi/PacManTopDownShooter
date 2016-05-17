@@ -43,7 +43,7 @@ public class MultiplayerGamePlayState {
             canSpawnAmmo -= delta;
             // QUIT GAME
             if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-                //quitGame();
+                quitGame();
             }
 
             checkIfPlayersDied();
@@ -206,12 +206,7 @@ public class MultiplayerGamePlayState {
 
     public static void checkIfPlayersDied() {
 
-        if (!player.isAlive()) {
-            Game.winnerString = "SCORE: " + Score.getScore();
-            resetGame();
-        }
-        else if (!opponent.isAlive()) {
-            Game.winnerString = "SCORE: " + Score.getScore();
+        if (!player.isAlive() || !opponent.isAlive()) {
             resetGame();
         }
     }
@@ -219,6 +214,7 @@ public class MultiplayerGamePlayState {
     public static void resetGame() {
 
         Game.startDelay = START_DELAY;
+        Game.winnerString = "SCORE: " + Score.getScore();
         player.reset();
         opponent.reset();
         bulletList.clear();
@@ -261,6 +257,8 @@ public class MultiplayerGamePlayState {
         connection.stop();
         if (Game.isServer)
             server.close();
+        sender.interrupt();
+        receiver.interrupt();
         Game.state = Game.MENUSTATE;
     }
 }

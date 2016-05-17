@@ -43,6 +43,7 @@ public class UDPServerThread extends Thread {
     public void close() {
 
         this.isRunning = false;
+        this.udpServerSocket.close();
         //this.interrupt();
     }
 
