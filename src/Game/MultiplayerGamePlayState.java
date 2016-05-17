@@ -228,7 +228,7 @@ public class MultiplayerGamePlayState {
         Score.resetScore();
         canCreateConnection = true;
         try {
-            for(int i = 0; i < 100; i++) {
+            for (int i = 0; i < 100; i++) {
                 connection.send("2");
             }
         } catch (IOException e) {
