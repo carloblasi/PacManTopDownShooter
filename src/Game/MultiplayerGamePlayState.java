@@ -226,17 +226,15 @@ public class MultiplayerGamePlayState {
         opponentBulletList.clear();
         enemyList.clear();
         Score.resetScore();
-        connection.stop();
         canCreateConnection = true;
         try {
-            connection.send("2");
-            connection.send("2");
-            connection.send("2");
-            connection.send("2");
-            connection.send("2");
+            for(int i = 0; i < 100; i++) {
+                connection.send("2");
+            }
         } catch (IOException e) {
             System.out.println("ERROR WHILE SENDING END GAME");
         }
+        connection.stop();
         if (Game.isServer)
             server.close();
         Game.state = Game.MENUSTATE;
