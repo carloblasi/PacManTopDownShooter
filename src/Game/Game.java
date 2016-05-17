@@ -93,6 +93,8 @@ public class Game extends BasicGame {
 
     static UDPServerThread server;
     static boolean isServer = false;
+    static UDPSenderThread sender;
+    static UDPReceiverThread receiver;
 
     public static void main(String[] args) throws SlickException {
 
@@ -103,7 +105,6 @@ public class Game extends BasicGame {
         }
         //getSystemLookAndFeel();
         AppGameContainer app = new AppGameContainer(new Game("Pac Man: The Top Down Shooter"));
-        //app.setDisplayMode(1280, 800, true);
         app.setDisplayMode(Window.WIDTH, Window.HEIGHT, true);
         app.start();
     }
@@ -321,9 +322,9 @@ public class Game extends BasicGame {
                 else
                     serverAddress = InetAddress.getByName(IP);
 
-                UDPSenderThread sender = new UDPSenderThread(serverAddress, serverPort);
+                sender = new UDPSenderThread(serverAddress, serverPort);
                 sender.start();
-                UDPReceiverThread receiver = new UDPReceiverThread(sender.getSocket());
+                receiver = new UDPReceiverThread(sender.getSocket());
                 receiver.start();
 
             } catch (SocketException e) {

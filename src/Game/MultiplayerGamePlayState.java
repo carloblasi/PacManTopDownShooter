@@ -19,6 +19,8 @@ import static Game.Game.enemyList;
 import static Game.Game.inGameFont;
 import static Game.Game.infoString;
 import static Game.Game.player;
+import static Game.Game.receiver;
+import static Game.Game.sender;
 import static Game.Game.server;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.GameContainer;
@@ -40,8 +42,9 @@ public class MultiplayerGamePlayState {
 
             canSpawnAmmo -= delta;
             // QUIT GAME
-            if (input.isKeyPressed(Input.KEY_ESCAPE))
-                quitGame();
+            if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+                //quitGame();
+            }
 
             checkIfPlayersDied();
             canFire -= delta;
@@ -227,11 +230,13 @@ public class MultiplayerGamePlayState {
                 connection.send("3");
             }
         } catch (IOException e) {
-            System.out.println("ERROR WHILE SENDING END GAME");
+            System.out.println("Error while sending end game");
         }
         connection.stop();
         if (Game.isServer)
             server.close();
+        sender.interrupt();
+        receiver.interrupt();
         canCreateConnection = true;
         Game.state = Game.MULTIPLAYERGAMEOVERSTATE;
     }
