@@ -204,7 +204,7 @@ public class Game extends BasicGame {
             ghosts[2] = new Image("Images/Inky.png");
             ghosts[3] = new Image("Images/Pinky.png");
 
-            ObjectInputStream inStream = new ObjectInputStream(new FileInputStream("pmmtds.saves"));
+            ObjectInputStream inStream = new ObjectInputStream(new FileInputStream("pmmtds.scores"));
             Score = (ScoreManager) inStream.readObject();
 
         } catch (IOException e) {

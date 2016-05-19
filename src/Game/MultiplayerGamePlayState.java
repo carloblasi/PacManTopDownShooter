@@ -215,6 +215,8 @@ public class MultiplayerGamePlayState {
 
         Game.startDelay = START_DELAY;
         Game.winnerString = "SCORE: " + Score.getScore();
+        if (Score.checkNewMultiplayerHighScore())
+            Score.saveScores();
         player.reset();
         opponent.reset();
         bulletList.clear();

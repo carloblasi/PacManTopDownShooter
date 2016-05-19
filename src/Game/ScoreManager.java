@@ -14,11 +14,13 @@ public class ScoreManager implements Serializable {
 
     private int score = 0;
     private int[] scores = {0, 0, 0, 0, 0};
+    private int[] multiplayerScores = {0, 0, 0, 0, 0};
 
     /**
      *
      */
     public String[] scoreStrings;
+    public String[] multiplayerScoreStrings;
 
     /**
      *
@@ -26,6 +28,7 @@ public class ScoreManager implements Serializable {
     public ScoreManager() {
 
         this.scoreStrings = new String[this.scores.length];
+        this.multiplayerScoreStrings = new String[this.multiplayerScores.length];
     }
 
     public void incrementScore() {
@@ -45,8 +48,8 @@ public class ScoreManager implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * Controlla se il punteggio è maggiore di uno dei cinque punteggi già presenti nella leaderboard e se lo è lo inserisce nel vettore.
+     * @return true se il punteggio è un nuovo record
      */
     public boolean checkNewHighScore() {
 
@@ -75,11 +78,42 @@ public class ScoreManager implements Serializable {
     }
 
     /**
-     *
-     * @param score
-     * @return
+     * Controlla se il punteggio è maggiore di uno dei cinque punteggi già presenti nella leaderboard e se lo è lo inserisce nel vettore.
+     * @return true se il punteggio è un nuovo record
      */
-    public String getStringFromScore(int score) {
+    public boolean checkNewMultiplayerHighScore() {
+
+        for (int i = 0; i < this.multiplayerScores.length; i++) {
+
+            if (this.score > this.multiplayerScores[i]) {
+
+                int min = -1;
+                for (int j = 0; j < this.multiplayerScores.length; j++)
+                    if (min > this.multiplayerScores[j])
+                        min = this.multiplayerScores[j];
+
+                int c = 0;
+                for (int j = 0; j < this.multiplayerScores.length; j++) {
+                    if (this.multiplayerScores[j] == min) {
+                        c = j;
+                        break;
+                    }
+                }
+                this.multiplayerScores[c] = this.score;
+                Arrays.sort(this.multiplayerScores);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Aggiunge di fronte al punteggio che gli viene passato come argomento gli zeri necessari per riempire lo spazio nella leaderboard.
+     * È solo una cosa estetica
+     * @param score
+     * @return il punteggio modificato
+     */
+    private String getStringFromScore(int score) {
 
         String scoreString = Integer.toString(score);
 
@@ -93,7 +127,7 @@ public class ScoreManager implements Serializable {
     }
 
     /**
-     *
+     * Ordina al contrario il vettore di stringhe che contiene gli score.
      */
     public void sortScores() {
 
@@ -106,12 +140,25 @@ public class ScoreManager implements Serializable {
     }
 
     /**
-     *
+     * Ordina al contrario il vettore di stringhe che contiene gli score.
+     */
+    public void sortMultiplayerScores() {
+
+        int k = 0;
+        for (int i = this.multiplayerScores.length - 1; i >= 0; i--) {
+
+            this.multiplayerScoreStrings[k] = this.getStringFromScore(this.multiplayerScores[i]);
+            k++;
+        }
+    }
+
+    /**
+     * Serializza l'oggetto ScoreManager.
      */
     public void saveScores() {
 
         try {
-            try (ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream("pmmtds.saves"))) {
+            try (ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream("pmmtds.scores"))) {
                 outStream.writeObject(this);
                 System.out.println("SCORES SAVED");
             }

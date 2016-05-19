@@ -99,7 +99,7 @@ public class MultiplayerMenuState {
         Game.IPFont.drawString("IP:", Window.HALF_WIDTH - 300, Window.HALF_HEIGHT - 200, Color.white);
         Game.SourcePortFont.drawString("SOURCE PORT:", Window.HALF_WIDTH - 400, Window.HALF_HEIGHT - 120, Color.white);
         Game.DestinationPortFont.drawString("DEST. PORT:", Window.HALF_WIDTH - 380, Window.HALF_HEIGHT - 40, Color.white);
-        smallFont.drawString(localIP, Window.WIDTH/64, Window.HEIGHT/40, Color.white);
+        smallFont.drawString("YOUR IP: " + localIP, Window.WIDTH/64, Window.HEIGHT/40, Color.white);
         menuButton.render();
 
         if (!error) {
