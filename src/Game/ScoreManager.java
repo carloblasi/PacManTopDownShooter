@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 /**
- *
+ * Rappresenta l'oggetto che si occupa di gestire il punteggio durante una partita e i punteggi migliori.
  * @author carloblasi
  */
 public class ScoreManager implements Serializable {
@@ -17,7 +17,7 @@ public class ScoreManager implements Serializable {
     private int[] multiplayerScores = {0, 0, 0, 0, 0};
 
     /**
-     * I due array di stringhe di puntegi sono pubblici perché vengono usati dalla classe LeaderboardState per essere scritti su schermo
+     * I due array di stringhe di punteggi sono pubblici perché vengono usati dalla classe LeaderboardState per essere scritti su schermo
      */
     public String[] scoreStrings;
     public String[] multiplayerScoreStrings;

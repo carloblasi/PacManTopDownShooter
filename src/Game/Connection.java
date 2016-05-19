@@ -1,7 +1,6 @@
 package Game;
 
 import static Game.Game.Score;
-import static Game.Game.opponent;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -11,12 +10,10 @@ import javax.swing.JOptionPane;
 
 /**
  * Rappresenta la connessione tra due giocatori.
- *
  * @author carloblasi
  */
 public class Connection implements Runnable {
 
-    // È un server con un metodo sendTo()
     private DatagramSocket socket;
     private boolean running;
     InetSocketAddress address;
@@ -25,17 +22,19 @@ public class Connection implements Runnable {
     //Info oppInfo = new Info(0, 0, 0, 0, 0);
 
     /**
-     *
-     * @param port
-     * @param address
-     * @throws SocketException
+     * Connette il giocatore all'indirizzo del secondo giocatore
+     * @param port Porta del secondo giocatore
+     * @param address Indirizzo del secondo giocatore
+     * @throws SocketException se l'indirizzo o la porta non sono validi
      */
     public void connect(int port, InetSocketAddress address) throws SocketException {
+
         try {
             this.socket = new DatagramSocket(port);
             this.address = address;
+
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "INVALID ADDRESS or PORT/S", "Error", JOptionPane.WARNING_MESSAGE);
+            System.out.println("INVALID ADDRESS or PORT/S");
         }
     }
 
@@ -119,8 +118,8 @@ public class Connection implements Runnable {
     }
 
     /**
-     *
-     * @param msg
+     * Invia una stringa al secondo giocatore.
+     * @param msg La stringa da inviare
      * @throws IOException
      */
     public void send(String msg) throws IOException {
@@ -138,8 +137,8 @@ public class Connection implements Runnable {
     }
 
     /**
-     *
-     * @param ba
+     * Invia un {@code byte} array al secondo giocatore.
+     * @param ba il byte array da inviare
      * @throws IOException
      */
     public void send(byte[] ba) throws IOException {
@@ -154,7 +153,7 @@ public class Connection implements Runnable {
 
     /**
      *
-     * @return
+     * @return l'ultima posizione e vita del secondo giocatore
      */
     public String getOpponentPosition() {
         return this.opponentPosition;

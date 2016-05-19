@@ -60,8 +60,8 @@ public class Bullet {
     }
 
     /**
-     *
-     * @param delta
+     * Aggiorna la posizione del proiettile
+     * @param delta {@code delta} del gioco
      */
     public void update(int delta) {
         if (isFired()) {
@@ -83,8 +83,8 @@ public class Bullet {
     }
 
     /**
-     *
-     * @param gc 
+     * Rimuove (smette di disegnare) il proiettile se è uscito dallo schermo.
+     * @param gc
      */
     public void removeFromGameIfOutOfBounds(GameContainer gc) {
 
@@ -96,9 +96,9 @@ public class Bullet {
     }
 
     /**
-     *
-     * @param gc
-     * @return
+     * Controlla se il proiettile è uscito o no dallo schermo.
+     * @param gc Il {@code GameContainer} del gioco
+     * @return true se il proiettile è uscito dallo schermo, false altrimenti
      */
     public boolean isOutOfBounds(GameContainer gc) {
 
@@ -107,7 +107,7 @@ public class Bullet {
     }
 
     /**
-     *
+     * Rimuove (smette di disegnare) il proiettile.
      */
     public void remove() {
         this.fired = false;

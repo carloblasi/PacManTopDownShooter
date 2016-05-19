@@ -10,7 +10,7 @@ import java.awt.Point;
 import java.util.ConcurrentModificationException;
 
 /**
- *
+ * Rappresenta il secondo giocatore in una partita multiplayer.
  * @author carloblasi
  */
 public class Opponent {
@@ -26,7 +26,9 @@ public class Opponent {
     private float xRatio = 1;
     private float yRatio = 1;
 
-
+    /**
+     * Inizializza il secondo giocatore.
+     */
     public Opponent() {
 
         loadImage();
@@ -53,6 +55,10 @@ public class Opponent {
         return false;
     }*/
 
+    /**
+     *
+     * @param g
+     */
     public void render(Graphics g) {
 
         if (isAlive()) {
@@ -63,6 +69,9 @@ public class Opponent {
         }
     }
 
+    /**
+     * Carica l'immagine.
+     */
     public void loadImage() {
 
         try {
@@ -72,6 +81,12 @@ public class Opponent {
         }
     }
 
+    /**
+     * 
+     * @param oppCoordinates
+     * @param x
+     * @param y
+     */
     public void update(Point oppCoordinates, int x, int y) {
 
         if (this.alive) {

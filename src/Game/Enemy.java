@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- *
+ * Rappresenta un nemico per il {@code Player}.
  * @author carloblasi
  */
 public class Enemy {
@@ -26,6 +26,11 @@ public class Enemy {
     private int radius = diameter/2;
     private int playerToFollow;
 
+    /**
+     * Inizializza un nemico con la posizione data.
+     * @param startX la posizione X da cui parte il nemico
+     * @param startY la posizione Y da cui parte il nemico
+     */
     public Enemy(int startX, int startY) {//, int playerID) {
 
         this.coordinates.setLocation(startX, startY);
@@ -33,6 +38,13 @@ public class Enemy {
         loadImage();
     }
 
+    /**
+     * Inizializza un nemico con la posizione data per una partita multiplayer.
+     * @param startX la posizione X da cui parte il nemico
+     * @param startY la posizione Y da cui parte il nemico
+     * @param imageIndex l'indice dell'immagine (colore) da caricare
+     * @param playerToFollow può essere 0 o 1 e dice al nemico che giocatore seguire
+     */
     public Enemy(int startX, int startY, int imageIndex, int playerToFollow) {//, int playerID) {
 
         this.coordinates.setLocation(startX, startY);
@@ -44,6 +56,11 @@ public class Enemy {
 
     }
 
+    /**
+     * Aggiorna la posizione del nemico.
+     * @param playerCoordinates coordinate del giocatore da seguire
+     * @param delta {@code delta} del gioco
+     */
     public void update(Point playerCoordinates, int delta) {
 
         float rad = (float)(Math.atan2(playerCoordinates.x - this.coordinates.getX(), this.coordinates.getY() - playerCoordinates.y));
@@ -59,14 +76,18 @@ public class Enemy {
         this.coordinates.setLocation(x, y);
     }
 
+    /**
+     * Disegna il nemico se è vivo.
+     */
     public void render() {
         if (this.isAlive())
             this.ghostImage.drawCentered((float)this.coordinates.getX(),(float)this.coordinates.getY());
     }
 
     /**
-     *
-     * @param bullets
+     * Controlla se il nemico è entrato in contatto con un proiettile e lo rimuove nel caso
+     * sia successo.
+     * @param bullets la lista che contiene i proiettili sparati
      */
     public void detectCollisionWithBullet(ArrayList<Bullet> bullets) {
 
@@ -88,7 +109,7 @@ public class Enemy {
 
     /**
      * Controlla se ha colliso con un proiettile del Player e rimuove il proiettile in questione.
-     * @param bullets La lista che contiene i proiettili da controllare
+     * @param bullets L' {@code ArrayList} che contiene i proiettili sparati da controllare
      * @return true - se ha colliso con un proiettile, false altrimenti
      */
     public boolean isCollidingWithBullets(ArrayList<Bullet> bullets) {
@@ -110,7 +131,12 @@ public class Enemy {
         return false;
     }
 
-        public boolean isCollidingWithBullets(LinkedList<Bullet> bullets) {
+    /**
+     * Controlla se ha colliso con un proiettile del Player e rimuove il proiettile in questione.
+     * @param bullets La {@code LinkedList} che contiene i proiettili sparati da controllare
+     * @return true - se ha colliso con un proiettile, false altrimenti
+     */
+    public boolean isCollidingWithBullets(LinkedList<Bullet> bullets) {
 
         Iterator<Bullet> iter = bullets.iterator();
         while (iter.hasNext()) {
@@ -129,13 +155,19 @@ public class Enemy {
         return false;
     }
 
-
+    /**
+     * Carica l'immagine del fantasma con un colore random.
+     */
     public void loadImage() {
 
         Random r = new Random();
         this.ghostImage = ghosts[r.nextInt(4)];
     }
 
+    /**
+     * Carica l'immagine del fantasma con il colore determinato dall'{@code imageIndex}.
+     * @param imageIndex indice dell'immagine da caricare
+     */
     public void loadImage(int imageIndex) {
 
         this.ghostImage = ghosts[imageIndex];
@@ -157,12 +189,18 @@ public class Enemy {
         return this.radius;
     }
 
+    /**
+     * Uccide (smette di disegnare) il nemico e incrementa il punteggio.
+     */
     public void kill() {
 
         this.alive = false;
         Score.incrementScore();
     }
 
+    /**
+     * Uccide (smette di disegnare) il nemico.
+     */
     public void remove() {
         this.alive = false;
     }

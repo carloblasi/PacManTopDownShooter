@@ -37,6 +37,15 @@ public class MultiplayerGamePlayState {
     public static int canSpawnEnemy = ENEMY_DELAY;
     static boolean justStarted = true;
 
+    /**
+     * Metodo generico per aggiornare la logica degli oggetti della scena
+     * @param gc {@code GameContainer} del gioco
+     * @param input L'input del gioco
+     * @param delta {@code delta} del gioco
+     * @param mouseX Coordinata X del mouse
+     * @param mouseY Coordinata Y del mouse
+     * @throws SlickException
+     */
     public static void update(GameContainer gc, Input input, int delta, int mouseX, int mouseY) throws SlickException {
 
         startDelay -= delta;

@@ -11,7 +11,7 @@ import java.awt.Point;
 import java.util.ConcurrentModificationException;
 
 /**
- *
+ * Rappresenta il giocatore sia in single player che in multiplayer.
  * @author carloblasi
  */
 public class Player {

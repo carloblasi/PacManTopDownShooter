@@ -104,7 +104,7 @@ public class Game extends BasicGame {
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
             while (interfaces.hasMoreElements()) {
                 NetworkInterface iface = interfaces.nextElement();
-                // filters out 127.0.0.1 and inactive interfaces
+
                 if (iface.isLoopback() || !iface.isUp()) {
                     continue;
                 }
@@ -205,6 +205,12 @@ public class Game extends BasicGame {
         Score.resetScore();
     }
 
+    /**
+     * Metodo generico per aggiornare la logica degli oggetti di tutto il gioco
+     * @param gc {@code GameContainer} del gioco
+     * @param delta {@code delta} del gioco
+     * @throws SlickException
+     */
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
 
@@ -304,6 +310,9 @@ public class Game extends BasicGame {
         }
     }
 
+    /**
+     * Apre la connessione tra i due giocatori e apre il server che serve ad inviare le posizioni dei nemici.
+     */
     private void createConnection() {
 
         if (canCreateConnection) {
