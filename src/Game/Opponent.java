@@ -32,17 +32,24 @@ public class Opponent {
         healthbar = new HealthBar(this.Coordinates.x, this.Coordinates.y);
     }
 
-    public void setScreenRatio() {
+    public boolean setScreenRatio() {
 
-        if (Window.WIDTH > Game.opponentScreenWidth)
-            this.xRatio = Window.WIDTH/Game.opponentScreenWidth;
-        else
-            this.xRatio = Game.opponentScreenWidth/Window.WIDTH;
+        if (Game.opponentScreenWidth > 0 && Game.opponentScreenHeight > 0) {
 
-        if (Window.HEIGHT > Game.opponentScreenHeight)
-            this.yRatio = Window.HEIGHT/Game.opponentScreenHeight;
-        else
-            this.yRatio = Game.opponentScreenHeight/Window.HEIGHT;
+            if (Window.WIDTH > Game.opponentScreenWidth)
+                this.xRatio = Window.WIDTH/Game.opponentScreenWidth;
+            else
+                this.xRatio = Game.opponentScreenWidth/Window.WIDTH;
+
+            if (Window.HEIGHT > Game.opponentScreenHeight)
+                this.yRatio = Window.HEIGHT/Game.opponentScreenHeight;
+            else
+                this.yRatio = Game.opponentScreenHeight/Window.HEIGHT;
+
+            Game.connection.setting = false;
+            return true;
+        }
+        return false;
     }
 
     public void render(Graphics g) {

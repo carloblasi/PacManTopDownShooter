@@ -314,8 +314,7 @@ public class Game extends BasicGame {
                 connection.connect(SourcePort, address);
                 connection.start();
 
-                connection.send(Integer.toString(Window.WIDTH));
-                connection.send(Integer.toString(Window.HEIGHT));
+                
 
             } catch (SocketException e) {
                 System.out.println("ERROR: IP, SOURCE PORT or DESTINATION PORT NOT VALID " + e);
