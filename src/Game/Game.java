@@ -10,7 +10,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.TextField;
-import javax.swing.UnsupportedLookAndFeelException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -24,8 +23,6 @@ import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
 import java.util.LinkedList;
-import java.util.Scanner;
-import javax.swing.UIManager;
 
 public class Game extends BasicGame {
 
@@ -103,12 +100,6 @@ public class Game extends BasicGame {
 
     public static void main(String[] args) throws SlickException {
 
-        Scanner keyboardInput = new Scanner(System.in);
-        String s = "";//keyboardInput.nextLine();
-        if (s.equals("s")) {
-            isServer = true;
-        }
-
         try {
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
             while (interfaces.hasMoreElements()) {
@@ -129,7 +120,6 @@ public class Game extends BasicGame {
             throw new RuntimeException(e);
         }
 
-        //getSystemLookAndFeel();
         AppGameContainer app = new AppGameContainer(new Game("Pac Man: The Top Down Shooter"));
         app.setDisplayMode(Window.WIDTH, Window.HEIGHT, true);
         app.start();
@@ -360,15 +350,6 @@ public class Game extends BasicGame {
                 System.out.println("Unknown Host");
             }
             canCreateConnection = false;
-        }
-    }
-
-    private static void getSystemLookAndFeel() {
-
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            System.out.println(e);
         }
     }
 }
