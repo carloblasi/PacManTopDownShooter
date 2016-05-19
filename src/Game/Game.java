@@ -111,9 +111,8 @@ public class Game extends BasicGame {
 
                 Enumeration<InetAddress> addresses = iface.getInetAddresses();
                 while (addresses.hasMoreElements()) {
-                    InetAddress addr = addresses.nextElement();
-                    localIP = addr.getHostAddress();
-
+                    InetAddress address = addresses.nextElement();
+                    localIP = address.getHostAddress();
                 }
             }
         } catch (SocketException e) {

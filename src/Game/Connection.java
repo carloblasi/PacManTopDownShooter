@@ -74,6 +74,9 @@ public class Connection implements Runnable {
             try {
                 this.socket.receive(packet);
 
+                if (Game.state == Game.MULTIPLAYERGAMEOVERSTATE) {
+                    this.opponentPosition = "" + Window.HALF_WIDTH + ":" + Window.HALF_WIDTH + ":" + Window.HALF_WIDTH + ":" + Window.HALF_WIDTH + ":" + 100 + ":0";
+                }
                 this.opponentPosition = new String(buffer, 0, packet.getLength());
 
                 //oppInfo = Info.deserialize(buffer);
