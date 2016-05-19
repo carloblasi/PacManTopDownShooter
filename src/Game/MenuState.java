@@ -10,17 +10,17 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
 public class MenuState {
-    
+
     public static void update(GameContainer gc, Input input, int delta, int mouseX, int mouseY) {
 
         if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-            
-            if (playButton.isPressed(input)) {
+
+            if (playButton.isPressed()) {
 
                 Window.clear(input);
                 Game.state = Game.GAMEPLAYSTATE;
             }
-            if (multiplayerButton.isPressed(input)) {
+            if (multiplayerButton.isPressed()) {
 
                 Window.clear(input);
                 Game.state = Game.MULTIPLAYERMENUSTATE;
@@ -28,16 +28,16 @@ public class MenuState {
                 Game.DestinationPortTextField.setText("");
                 Game.SourcePortTextField.setText("");
             }
-            if (leaderboardButton.isPressed(input)) {
+            if (leaderboardButton.isPressed()) {
 
                 Window.clear(input);
                 Game.state = Game.LEADERBOARDSTATE;
             }
-            if (quitButton.isPressed(input)) {
+            if (quitButton.isPressed()) {
                 System.exit(0);
             }
         }
-        
+
         if (input.isKeyPressed(Input.KEY_ENTER)) {
 
             Window.clear(input);
@@ -52,13 +52,18 @@ public class MenuState {
             Game.SourcePortTextField.setText("");
         }
         if (input.isKeyPressed(Input.KEY_L)) {
-            
+
             Window.clear(input);
             Game.state = Game.LEADERBOARDSTATE;
         }
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
             System.exit(0);
         }
+
+        playButton.hoverEffect();
+        multiplayerButton.hoverEffect();
+        leaderboardButton.hoverEffect();
+        quitButton.hoverEffect();
     }
 
     public static void render(GameContainer gc, Graphics g) {

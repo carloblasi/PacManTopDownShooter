@@ -22,13 +22,13 @@ import org.newdawn.slick.SlickException;
  * @author carloblasi
  */
 public class PauseState {
-    
+
     public static void update(GameContainer gc, Input input, int delta, int mouseX, int mouseY) throws SlickException {
-        
+
         if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-            
-            if (menuButton.isPressed(input)) {
-                
+
+            if (menuButton.isPressed()) {
+
                 Window.clear(input);
                 startDelay = START_DELAY;
                 canSpawnAmmo = AMMOS_DELAY;
@@ -42,16 +42,16 @@ public class PauseState {
                 Score.resetScore();
                 Game.state = Game.MENUSTATE;
             }
-            
-            if (resumeButton.isPressed(input)) {
-                
+
+            if (resumeButton.isPressed()) {
+
                 Window.clear(input);
                 Game.state = Game.GAMEPLAYSTATE;
             }
         }
-        
+
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-            
+
             Window.clear(input);
             startDelay = START_DELAY;
             canSpawnAmmo = AMMOS_DELAY;
@@ -66,14 +66,17 @@ public class PauseState {
             Game.state = Game.MENUSTATE;
         }
         if (input.isKeyPressed(Input.KEY_R)) {
-            
+
             Window.clear(input);
             Game.state = Game.GAMEPLAYSTATE;
         }
+
+        resumeButton.hoverEffect();
+        menuButton.hoverEffect();
     }
-    
+
     public static void render(GameContainer gc, Graphics g) throws SlickException {
-        
+
         resumeButton.render();
         menuButton.render();
     }

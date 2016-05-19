@@ -4,7 +4,6 @@ import static Game.Game.localIP;
 import static Game.Game.menuButton;
 import static Game.Game.playButton;
 import static Game.Game.smallFont;
-import java.net.Inet4Address;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -19,7 +18,7 @@ public class MultiplayerMenuState {
 
         if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 
-            if (menuButton.isPressed(input)) {
+            if (menuButton.isPressed()) {
 
                 Window.clear(input);
                 Game.IPTextField.setText("");
@@ -28,7 +27,7 @@ public class MultiplayerMenuState {
                 Game.state = Game.MENUSTATE;
             }
 
-            if (playButton.isPressed(input, Window.HALF_WIDTH, Window.HEIGHT - Window.HEIGHT/4)) {
+            if (playButton.isPressed(Window.HALF_WIDTH, Window.HEIGHT - Window.HEIGHT/4)) {
 
                 if (Game.IPTextField.getText() != null && Game.IPTextField.getText().equals("") == false &&
                     Game.SourcePortTextField.getText() != null && Game.SourcePortTextField.getText().equals("") == false &&
@@ -89,6 +88,9 @@ public class MultiplayerMenuState {
                 errorTimer = 800;
             }
         }
+
+        menuButton.hoverEffect();
+        playButton.hoverEffect(Window.HALF_WIDTH, Window.HEIGHT - Window.HEIGHT/4);
     }
 
     public static void render(GameContainer gc, Graphics g) {

@@ -19,15 +19,12 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Point;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 public class Game extends BasicGame {
@@ -106,7 +103,7 @@ public class Game extends BasicGame {
     public static void main(String[] args) throws SlickException {
 
         Scanner keyboardInput = new Scanner(System.in);
-        String s = keyboardInput.nextLine();
+        String s = "";//keyboardInput.nextLine();
         if (s.equals("s")) {
             isServer = true;
         }

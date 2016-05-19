@@ -19,7 +19,7 @@ public class LeaderBoardState {
 
         if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 
-            if (menuButton.isPressed(input)) {
+            if (menuButton.isPressed()) {
 
                 Window.clear(input);
                 Game.state = Game.MENUSTATE;
@@ -31,6 +31,8 @@ public class LeaderBoardState {
             Window.clear(input);
             Game.state = Game.MENUSTATE;
         }
+
+        menuButton.hoverEffect();
     }
 
     public static void render(GameContainer gc, Graphics g) throws SlickException {
