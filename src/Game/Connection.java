@@ -21,8 +21,7 @@ public class Connection implements Runnable {
     private boolean running;
     InetSocketAddress address;
     String opponentPosition = "";
-    public boolean setting = true;
-    private int opponentScreenWidth, opponentScreenHeight;
+    //public boolean setting = true;
     //Info oppInfo = new Info(0, 0, 0, 0, 0);
 
     /**
@@ -55,10 +54,11 @@ public class Connection implements Runnable {
 
     @Override
     public void run() {
+
         byte[] buffer = new byte[128];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
 
-        while (Game.opponent.setScreenRatio() && setting) {
+        /*while (Game.opponent.setScreenRatio() && setting) {
             try {
 
                 send(Integer.toString(Window.WIDTH));
@@ -79,7 +79,7 @@ public class Connection implements Runnable {
             } catch (IOException e) {
                 break;
             }
-        }
+        }*/
 
         while (running) {
             try {

@@ -33,7 +33,7 @@ public class Opponent {
         healthbar = new HealthBar(this.Coordinates.x, this.Coordinates.y);
     }
 
-    public boolean setScreenRatio() {
+    /*public boolean setScreenRatio() {
 
         if (Game.opponentScreenWidth > 0 && Game.opponentScreenHeight > 0) {
 
@@ -51,7 +51,7 @@ public class Opponent {
             return true;
         }
         return false;
-    }
+    }*/
 
     public void render(Graphics g) {
 

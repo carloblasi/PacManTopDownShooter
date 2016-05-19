@@ -55,7 +55,7 @@ public class UDPServerThread extends Thread {
     @Override
     public void run() {
 
-        while (true && Game.connection.setting == false) {
+        while (true/* && Game.connection.setting == false*/) {
             try {
                 this.sleep(Game.ENEMY_DELAY);
                 connect();
