@@ -240,27 +240,30 @@ public class MultiplayerGamePlayState {
 
     public static void quitGame() {
 
-        Game.startDelay = START_DELAY;
-        player.reset();
-        opponent.reset();
-        bulletList.clear();
-        opponentBulletList.clear();
-        enemyList.clear();
-        Score.resetScore();
-        Score.setScore(0);
-        canCreateConnection = true;
         try {
-            for (int i = 0; i < 24; i++) {
-                connection.send("2");
+            Game.startDelay = START_DELAY;
+            player.reset();
+            opponent.reset();
+            bulletList.clear();
+            opponentBulletList.clear();
+            enemyList.clear();
+            Score.resetScore();
+            Score.setScore(0);
+            canCreateConnection = true;
+            try {
+                for (int i = 0; i < 24; i++)
+                    connection.send("2");
+            } catch (IOException e) {
+                System.out.println("ERROR WHILE SENDING END GAME");
             }
-        } catch (IOException e) {
-            System.out.println("ERROR WHILE SENDING END GAME");
+            connection.stop();
+            if (Game.isServer)
+                server.close();
+            sender.interrupt();
+            receiver.interrupt();
+        } catch (NullPointerException e) {
+            Game.state = Game.MENUSTATE;
         }
-        connection.stop();
-        if (Game.isServer)
-            server.close();
-        sender.interrupt();
-        receiver.interrupt();
         Game.state = Game.MENUSTATE;
     }
 }
