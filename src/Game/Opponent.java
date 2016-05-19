@@ -30,19 +30,24 @@ public class Opponent {
 
         loadImage();
         healthbar = new HealthBar(this.Coordinates.x, this.Coordinates.y);
-        /*if (Window.WIDTH > Game.opponentScreenWidth)
+    }
+
+    public void setScreenRatio() {
+
+        if (Window.WIDTH > Game.opponentScreenWidth)
             this.xRatio = Window.WIDTH/Game.opponentScreenWidth;
         else
             this.xRatio = Game.opponentScreenWidth/Window.WIDTH;
+
         if (Window.HEIGHT > Game.opponentScreenHeight)
             this.yRatio = Window.HEIGHT/Game.opponentScreenHeight;
         else
-            this.yRatio = Game.opponentScreenHeight/Window.HEIGHT;*/
+            this.yRatio = Game.opponentScreenHeight/Window.HEIGHT;
     }
 
     public void render(Graphics g) {
 
-        if(isAlive()) {
+        if (isAlive()) {
 
             playerImage.drawCentered(this.Coordinates.x, this.Coordinates.y);
             playerImage.setRotation((float)this.rotation);

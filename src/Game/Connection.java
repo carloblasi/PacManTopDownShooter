@@ -1,5 +1,6 @@
 package Game;
 
+import static Game.Game.Score;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -56,7 +57,7 @@ public class Connection implements Runnable {
         byte[] buffer = new byte[128];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
 
-        /*while (setting) {
+        while (setting) {
             try {
                 this.socket.receive(packet);
                 Game.opponentScreenWidth = Integer.parseInt(new String(buffer, 0, packet.getLength()));
@@ -64,18 +65,18 @@ public class Connection implements Runnable {
                 this.socket.receive(packet);
                 Game.opponentScreenHeight = Integer.parseInt(new String(buffer, 0, packet.getLength()));
 
-
+                this.setting = false;
             } catch (IOException e) {
                 break;
             }
-        }*/
+        }
 
         while (running) {
             try {
                 this.socket.receive(packet);
 
                 if (Game.state == Game.MULTIPLAYERGAMEOVERSTATE) {
-                    this.opponentPosition = "" + Window.HALF_WIDTH + ":" + Window.HALF_WIDTH + ":" + Window.HALF_WIDTH + ":" + Window.HALF_WIDTH + ":" + 100 + ":0";
+                    Score.resetScore();
                 }
                 this.opponentPosition = new String(buffer, 0, packet.getLength());
 

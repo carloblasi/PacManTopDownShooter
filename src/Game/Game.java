@@ -84,7 +84,7 @@ public class Game extends BasicGame {
     static int oppBulletCount = 0;
     static Point opponentCoordinates = new Point(Window.HALF_WIDTH, Window.HALF_HEIGHT);
     static Point opponentMouseCoordinates = new Point();
-    static int opponentScreenHeight, opponentScreenWidth;
+    static int opponentScreenHeight = 0, opponentScreenWidth = 0;
 
     static Connection connection;
     static InetSocketAddress address;
@@ -314,14 +314,16 @@ public class Game extends BasicGame {
                 connection.connect(SourcePort, address);
                 connection.start();
 
-                //connection.send(Integer.toString(Window.WIDTH));
-                //connection.send(Integer.toString(Window.HEIGHT));
+                connection.send(Integer.toString(Window.WIDTH));
+                connection.send(Integer.toString(Window.HEIGHT));
 
             } catch (SocketException e) {
                 System.out.println("ERROR: IP, SOURCE PORT or DESTINATION PORT NOT VALID " + e);
             } catch (IOException e) {
                 System.out.println("ERROR SENDING SCREEN DIMENSIONS");
             }
+
+            opponent.setScreenRatio();
 
             int serverPort = 7777;
             if (isServer) {
