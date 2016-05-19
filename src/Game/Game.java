@@ -21,7 +21,9 @@ import java.util.Random;
 import java.awt.Point;
 import java.net.Inet4Address;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -99,7 +101,7 @@ public class Game extends BasicGame {
     static boolean isServer = false;
     static UDPSenderThread sender;
     static UDPReceiverThread receiver;
-    public static String localIP;
+    public static String localIP = null;
 
     public static void main(String[] args) throws SlickException {
 
@@ -108,11 +110,27 @@ public class Game extends BasicGame {
         if (s.equals("s")) {
             isServer = true;
         }
+
         try {
-            localIP = Inet4Address.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
-            System.out.println(e);
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface iface = interfaces.nextElement();
+                // filters out 127.0.0.1 and inactive interfaces
+                if (iface.isLoopback() || !iface.isUp()) {
+                    continue;
+                }
+
+                Enumeration<InetAddress> addresses = iface.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress addr = addresses.nextElement();
+                    localIP = addr.getHostAddress();
+
+                }
+            }
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
         }
+
         //getSystemLookAndFeel();
         AppGameContainer app = new AppGameContainer(new Game("Pac Man: The Top Down Shooter"));
         app.setDisplayMode(Window.WIDTH, Window.HEIGHT, true);

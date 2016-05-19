@@ -6,8 +6,17 @@
 package Game;
 
 import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -28,21 +37,43 @@ public class test extends BasicGame {
         super(title);
     }
 
-    /*public static void main(String args[]) throws SlickException, UnknownHostException {
+    /*public static void main(String args[]) throws SlickException, UnknownHostException, MalformedURLException, IOException {
 
         //AppGameContainer app = new AppGameContainer(new test(""), 600, 500, false);
         //app.start();
+        System.out.println(InetAddress.getLocalHost().getHostAddress());
 
-        System.out.println(Inet4Address.getLocalHost().getHostAddress());
+        String ip = null;
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface iface = interfaces.nextElement();
+                // filters out 127.0.0.1 and inactive interfaces
+                if (iface.isLoopback() || !iface.isUp()) {
+                    continue;
+                }
+
+                Enumeration<InetAddress> addresses = iface.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress addr = addresses.nextElement();
+                    ip = addr.getHostAddress();
+
+                }
+            }
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(ip);
+
     }*/
 
     @Override
     public void init(GameContainer container) throws SlickException {
 
-       // container.setTargetFrameRate(60);
+        // container.setTargetFrameRate(60);
         //container.setMaximumLogicUpdateInterval(60);
-        ball = new Ball(container.getWidth()/2, container.getHeight()/2);
-        ball2 = new Ball(container.getWidth()/2, container.getHeight()/2, false, Color.cyan);
+        ball = new Ball(container.getWidth() / 2, container.getHeight() / 2);
+        ball2 = new Ball(container.getWidth() / 2, container.getHeight() / 2, false, Color.cyan);
         w = container.getWidth();
         h = container.getWidth();
     }
@@ -84,30 +115,27 @@ class Ball {
         if (this.rigth == true && this.up == true) {
             this.position.x += speed * delta;
             this.position.y -= speed * delta;
-        }
-        else if (this.rigth == false && this.up == false) {
+        } else if (this.rigth == false && this.up == false) {
             this.position.x -= speed * delta;
             this.position.y += speed * delta;
-        }
-        else if (this.rigth == false && this.up == true) {
+        } else if (this.rigth == false && this.up == true) {
             this.position.x -= speed * delta;
             this.position.y -= speed * delta;
-        }
-        else if (this.rigth == true && this.up == false) {
+        } else if (this.rigth == true && this.up == false) {
             this.position.x += speed * delta;
             this.position.y += speed * delta;
         }
 
-        if (this.position.x >= screenWidth - this.size/2) {
+        if (this.position.x >= screenWidth - this.size / 2) {
             this.rigth = false;
         }
-        if (this.position.x <= this.size/2) {
+        if (this.position.x <= this.size / 2) {
             this.rigth = true;
         }
-        if (this.position.y >= screenHeight - this.size*3) {
+        if (this.position.y >= screenHeight - this.size * 3) {
             this.up = true;
         }
-        if (this.position.y <= this.size/2) {
+        if (this.position.y <= this.size / 2) {
             this.up = false;
         }
     }
@@ -115,7 +143,7 @@ class Ball {
     public void render(Graphics g) {
 
         g.setColor(this.color);
-        g.fillOval(this.position.x - this.size/2, this.position.y-this.size/2, this.size, this.size);
+        g.fillOval(this.position.x - this.size / 2, this.position.y - this.size / 2, this.size, this.size);
         g.setColor(Color.white);
     }
 }
