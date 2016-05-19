@@ -64,12 +64,18 @@ public class Connection implements Runnable {
                 send(Integer.toString(Window.WIDTH));
                 send(Integer.toString(Window.HEIGHT));
 
-                this.socket.receive(packet);
-                Game.opponentScreenWidth = Integer.parseInt(new String(buffer, 0, packet.getLength()));
-                this.socket.receive(packet);
-                Game.opponentScreenHeight = Integer.parseInt(new String(buffer, 0, packet.getLength()));
+                if (Game.opponentScreenWidth == 0) {
 
+                    this.socket.receive(packet);
+                    Game.opponentScreenWidth = Integer.parseInt(new String(buffer, 0, packet.getLength()));
+                }
+                if (Game.opponentScreenHeight == 0) {
+
+                    this.socket.receive(packet);
+                    Game.opponentScreenHeight = Integer.parseInt(new String(buffer, 0, packet.getLength()));
+                }
                 opponent.setScreenRatio();
+
             } catch (IOException e) {
                 break;
             }

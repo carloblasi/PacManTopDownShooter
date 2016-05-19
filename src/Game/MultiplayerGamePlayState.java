@@ -35,6 +35,7 @@ import org.newdawn.slick.Color;
 public class MultiplayerGamePlayState {
 
     public static int canSpawnEnemy = ENEMY_DELAY;
+    static boolean justStarted = true;
 
     public static void update(GameContainer gc, Input input, int delta, int mouseX, int mouseY) throws SlickException {
 
@@ -96,6 +97,12 @@ public class MultiplayerGamePlayState {
                     addBullet(mouseX, mouseY);
                     canFire = BULLET_DELAY;
                 }
+            }
+
+            if (justStarted) {
+
+                Score.resetScore();
+                justStarted = false;
             }
 
             /// SENDING AND RECEIVING COORDINATES
@@ -238,6 +245,7 @@ public class MultiplayerGamePlayState {
         sender.interrupt();
         receiver.interrupt();
         canCreateConnection = true;
+        justStarted = true;
         Game.state = Game.MULTIPLAYERGAMEOVERSTATE;
     }
 
@@ -269,6 +277,7 @@ public class MultiplayerGamePlayState {
         }
         isServer = false;
         Game.isServer = false;
+        justStarted = true;
         Game.state = Game.MENUSTATE;
     }
 }
