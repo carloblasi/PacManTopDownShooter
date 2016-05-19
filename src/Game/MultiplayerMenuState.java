@@ -1,7 +1,10 @@
 package Game;
 
+import static Game.Game.localIP;
 import static Game.Game.menuButton;
 import static Game.Game.playButton;
+import static Game.Game.smallFont;
+import java.net.Inet4Address;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -96,6 +99,7 @@ public class MultiplayerMenuState {
         Game.IPFont.drawString("IP:", Window.HALF_WIDTH - 300, Window.HALF_HEIGHT - 200, Color.white);
         Game.SourcePortFont.drawString("SOURCE PORT:", Window.HALF_WIDTH - 400, Window.HALF_HEIGHT - 120, Color.white);
         Game.DestinationPortFont.drawString("DEST. PORT:", Window.HALF_WIDTH - 380, Window.HALF_HEIGHT - 40, Color.white);
+        smallFont.drawCenteredString(localIP, Window.WIDTH/64, Window.HEIGHT/40, Color.white);
         menuButton.render();
 
         if (!error) {

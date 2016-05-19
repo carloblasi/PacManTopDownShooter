@@ -6,6 +6,8 @@
 package Game;
 
 import java.awt.Point;
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -26,10 +28,12 @@ public class test extends BasicGame {
         super(title);
     }
 
-    /*public static void main(String args[]) throws SlickException {
+    /*public static void main(String args[]) throws SlickException, UnknownHostException {
 
-        AppGameContainer app = new AppGameContainer(new test(""), 600, 500, false);
-        app.start();
+        //AppGameContainer app = new AppGameContainer(new test(""), 600, 500, false);
+        //app.start();
+
+        System.out.println(Inet4Address.getLocalHost().getHostAddress());
     }*/
 
     @Override

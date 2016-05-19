@@ -19,10 +19,13 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Point;
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 public class Game extends BasicGame {
@@ -49,7 +52,7 @@ public class Game extends BasicGame {
     static GameFont leaderboardFont;
     static GameFont escFont;
     static GameFont multiplayerFont;
-    static GameFont inGameFont;
+    static GameFont smallFont;
     static Image titleImage;
     static Image youLostImage;
     static Image[] ghosts = new Image[4];
@@ -96,6 +99,7 @@ public class Game extends BasicGame {
     static boolean isServer = false;
     static UDPSenderThread sender;
     static UDPReceiverThread receiver;
+    public static String localIP;
 
     public static void main(String[] args) throws SlickException {
 
@@ -103,6 +107,11 @@ public class Game extends BasicGame {
         String s = keyboardInput.nextLine();
         if (s.equals("s")) {
             isServer = true;
+        }
+        try {
+            localIP = Inet4Address.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            System.out.println(e);
         }
         //getSystemLookAndFeel();
         AppGameContainer app = new AppGameContainer(new Game("Pac Man: The Top Down Shooter"));
@@ -132,7 +141,7 @@ public class Game extends BasicGame {
         leaderboardFont = new GameFont(44f);
         escFont = new GameFont(44f);
         multiplayerFont = new GameFont(44f);
-        inGameFont = new GameFont(24f);
+        smallFont = new GameFont(24f);
         IPFont = new GameFont(54f);
         DestinationPortFont = new GameFont(44f);
         SourcePortFont = new GameFont(44f);

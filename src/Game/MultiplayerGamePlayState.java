@@ -16,7 +16,7 @@ import static Game.Game.opponentMouseCoordinates;
 import static Game.Game.canCreateConnection;
 import static Game.Game.canSpawnAmmo;
 import static Game.Game.enemyList;
-import static Game.Game.inGameFont;
+import static Game.Game.smallFont;
 import static Game.Game.infoString;
 import static Game.Game.player;
 import static Game.Game.receiver;
@@ -164,7 +164,7 @@ public class MultiplayerGamePlayState {
             }
         }
 
-        inGameFont.drawString("Score: " + Score.getScore(), 12, 12, Color.white);
+        smallFont.drawString("Score: " + Score.getScore(), 12, 12, Color.white);
     }
 
     public static void addBullet(int x, int y) {

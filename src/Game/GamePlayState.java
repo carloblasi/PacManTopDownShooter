@@ -19,7 +19,7 @@ import static Game.Game.enemyPositionY;
 import static Game.Game.increaseDifficulty;
 import static Game.Game.paused;
 import static Game.Game.player;
-import static Game.Game.inGameFont;
+import static Game.Game.smallFont;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -125,8 +125,8 @@ public class GamePlayState {
         player.checkIfPickedUpAmmos(ammos);
         player.render(g);
 
-        inGameFont.drawString("Score: " + Score.getScore(), 12, 12, Color.white);
-        inGameFont.drawString("Ammos: " + player.getAmmos(), 12, 36, Color.yellow);
+        smallFont.drawString("Score: " + Score.getScore(), 12, 12, Color.white);
+        smallFont.drawString("Ammos: " + player.getAmmos(), 12, 36, Color.yellow);
     }
 
     public static void addBullet(int x, int y) {
