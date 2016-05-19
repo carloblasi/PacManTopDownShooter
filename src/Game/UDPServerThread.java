@@ -44,6 +44,7 @@ public class UDPServerThread extends Thread {
 
         this.isRunning = false;
         this.udpServerSocket.close();
+        this.portMap.clear();
         //this.interrupt();
     }
 
@@ -94,7 +95,7 @@ public class UDPServerThread extends Thread {
 
                 // Converte il pacchetto in una stringa e lo stampa
                 String clientMessage = (new String(receivePacket.getData())).trim();
-                System.out.println(clientMessage);
+                //System.out.println(clientMessage);
 
                 // Stampa stati connessione
                 System.out.println("Client connected - socket address: " + receivePacket.getSocketAddress());

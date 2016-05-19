@@ -8,6 +8,7 @@ import org.newdawn.slick.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Point;
+import java.util.ConcurrentModificationException;
 
 /**
  *
@@ -101,20 +102,24 @@ public class Player {
      */
     public void detectCollisionWithEnemies(ArrayList<Enemy> enemies) throws SlickException {
 
-        Iterator<Enemy> iter = enemies.iterator();
+        try {
+            Iterator<Enemy> iter = enemies.iterator();
 
-        while (iter.hasNext()) {
-            Enemy enemy = iter.next();
+            while (iter.hasNext()) {
+                Enemy enemy = iter.next();
 
-            if (this.health != 0)
-                if(enemy.isAlive())
-                    if (Math.sqrt((enemy.getX() - this.getX()) * (enemy.getX() - this.getX()) +
-                                  (enemy.getY() - this.getY()) * (enemy.getY() - this.getY())) <=
-                                   this.radius + enemy.getRadius()) {
+                if (this.health != 0)
+                    if(enemy.isAlive())
+                        if (Math.sqrt((enemy.getX() - this.getX()) * (enemy.getX() - this.getX()) +
+                                      (enemy.getY() - this.getY()) * (enemy.getY() - this.getY())) <=
+                                       this.radius + enemy.getRadius()) {
 
-                        iter.remove();
-                        this.hit();
-                    }
+                            iter.remove();
+                            this.hit();
+                        }
+            }
+        } catch (ConcurrentModificationException e) {
+            System.out.println("Poteva andare peggio...");
         }
     }
 
