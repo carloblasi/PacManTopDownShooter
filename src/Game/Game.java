@@ -44,6 +44,7 @@ public class Game extends BasicGame {
     public static Button menuButton;
     public static Button resumeButton;
     public static Button retryButton;
+    public static Button serverButton;
 
     static GameFont bigFont;
     static GameFont playFont;
@@ -174,7 +175,7 @@ public class Game extends BasicGame {
         SourcePortTextField.setMaxLength(5);
         SourcePortTextField.setCursorVisible(false);
 
-        DestinationPortTextField = new TextField(gc, SourcePortFont.getFont(), Window.HALF_WIDTH - 40, Window.HALF_HEIGHT - 40, SourcePortFont.getStringWidth("55555"), 44);
+        DestinationPortTextField = new TextField(gc, SourcePortFont.getFont(), Window.HALF_WIDTH - 40, Window.HALF_HEIGHT - 48, SourcePortFont.getStringWidth("55555"), 44);
         DestinationPortTextField.setBorderColor(Color.transparent);
         DestinationPortTextField.setMaxLength(5);
         DestinationPortTextField.setCursorVisible(false);
@@ -186,6 +187,7 @@ public class Game extends BasicGame {
         menuButton = new Button("MENU (ESC)", Window.HALF_WIDTH, Window.HEIGHT - Window.HEIGHT/20, 44, Color.red);
         resumeButton = new Button("RESUME (R)", Window.HALF_WIDTH, Window.HALF_HEIGHT, 64, optionBlue);
         retryButton = new Button("RETRY (R)", Window.HALF_WIDTH, Window.HALF_HEIGHT, 64, optionBlue);
+        serverButton = new Button("SERVER", Window.HALF_WIDTH, Window.HALF_HEIGHT + 40, 32, Color.red);
 
         player = new Player();
         opponent = new Opponent();

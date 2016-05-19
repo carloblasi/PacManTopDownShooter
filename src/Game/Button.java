@@ -78,6 +78,14 @@ public class Button {
 
     /**
      *
+     * @param textColor
+     */
+    public void render(Color textColor) {
+        this.font.drawCenteredString(this.text, this.x, this.y, textColor);
+    }
+
+    /**
+     *
      * @param text
      */
     public void render(String text) {
@@ -104,7 +112,9 @@ public class Button {
     }
 
     public void setColor(Color textColor) {
+        
         this.textColor = textColor;
+        this.originalColor = this.textColor;
     }
 
     public void setFontSize(int fontSize) {

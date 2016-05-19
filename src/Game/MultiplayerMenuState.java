@@ -3,6 +3,7 @@ package Game;
 import static Game.Game.localIP;
 import static Game.Game.menuButton;
 import static Game.Game.playButton;
+import static Game.Game.serverButton;
 import static Game.Game.smallFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -13,6 +14,7 @@ public class MultiplayerMenuState {
 
     static int errorTimer = 800;
     static boolean error = false;
+    static boolean isServer = false;
 
     public static void update(GameContainer gc, Input input, int delta, int mouseX, int mouseY) {
 
@@ -24,6 +26,8 @@ public class MultiplayerMenuState {
                 Game.IPTextField.setText("");
                 Game.DestinationPortTextField.setText("");
                 Game.SourcePortTextField.setText("");
+                isServer = false;
+                Game.isServer = false;
                 Game.state = Game.MENUSTATE;
             }
 
@@ -47,6 +51,12 @@ public class MultiplayerMenuState {
                     error = true;
                 }
             }
+
+            if (serverButton.isPressed()) {
+
+                Game.isServer = !Game.isServer;
+                isServer = !isServer;
+            }
         }
 
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
@@ -55,6 +65,8 @@ public class MultiplayerMenuState {
             Game.IPTextField.setText("");
             Game.DestinationPortTextField.setText("");
             Game.SourcePortTextField.setText("");
+            isServer = false;
+            Game.isServer = false;
             Game.state = Game.MENUSTATE;
         }
 
@@ -91,6 +103,7 @@ public class MultiplayerMenuState {
 
         menuButton.hoverEffect();
         playButton.hoverEffect(Window.HALF_WIDTH, Window.HEIGHT - Window.HEIGHT/4);
+        serverButton.hoverEffect();
     }
 
     public static void render(GameContainer gc, Graphics g) {
@@ -100,9 +113,16 @@ public class MultiplayerMenuState {
         Game.SourcePortTextField.render(gc, g);
         Game.IPFont.drawString("IP:", Window.HALF_WIDTH - 300, Window.HALF_HEIGHT - 200, Color.white);
         Game.SourcePortFont.drawString("SOURCE PORT:", Window.HALF_WIDTH - 400, Window.HALF_HEIGHT - 120, Color.white);
-        Game.DestinationPortFont.drawString("DEST. PORT:", Window.HALF_WIDTH - 380, Window.HALF_HEIGHT - 40, Color.white);
+        Game.DestinationPortFont.drawString("DEST. PORT:", Window.HALF_WIDTH - 380, Window.HALF_HEIGHT - 48, Color.white);
         smallFont.drawString("YOUR IP: " + localIP, Window.WIDTH/64, Window.HEIGHT/40, Color.white);
         menuButton.render();
+
+        if (isServer) {
+            serverButton.setColor(Color.green);
+        } else {
+            serverButton.setColor(Color.red);
+        }
+        serverButton.render();
 
         if (!error) {
             playButton.render(Window.HALF_WIDTH, Window.HEIGHT - Window.HEIGHT/4);

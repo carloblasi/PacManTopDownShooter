@@ -22,6 +22,7 @@ import static Game.Game.player;
 import static Game.Game.receiver;
 import static Game.Game.sender;
 import static Game.Game.server;
+import static Game.MultiplayerMenuState.isServer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -266,6 +267,8 @@ public class MultiplayerGamePlayState {
         } catch (NullPointerException e) {
             Game.state = Game.MENUSTATE;
         }
+        isServer = false;
+        Game.isServer = false;
         Game.state = Game.MENUSTATE;
     }
 }

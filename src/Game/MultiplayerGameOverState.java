@@ -3,6 +3,7 @@ package Game;
 import static Game.Game.menuButton;
 import static Game.Game.playFont;
 import static Game.Game.retryButton;
+import static Game.MultiplayerMenuState.isServer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -17,6 +18,8 @@ public class MultiplayerGameOverState {
             if (menuButton.isPressed()) {
 
                 Window.clear(input);
+                isServer = false;
+                Game.isServer = false;
                 Game.state = Game.MENUSTATE;
             }
 
@@ -30,6 +33,8 @@ public class MultiplayerGameOverState {
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 
             Window.clear(input);
+            isServer = false;
+            Game.isServer = false;
             Game.state = Game.MENUSTATE;
         }
 
