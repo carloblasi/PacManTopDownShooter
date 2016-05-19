@@ -314,15 +314,9 @@ public class Game extends BasicGame {
                 connection.connect(SourcePort, address);
                 connection.start();
 
-                
-
             } catch (SocketException e) {
                 System.out.println("ERROR: IP, SOURCE PORT or DESTINATION PORT NOT VALID " + e);
-            } catch (IOException e) {
-                System.out.println("ERROR SENDING SCREEN DIMENSIONS");
             }
-
-            opponent.setScreenRatio();
 
             int serverPort = 7777;
             if (isServer) {

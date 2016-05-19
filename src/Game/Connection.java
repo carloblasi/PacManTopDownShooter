@@ -1,6 +1,7 @@
 package Game;
 
 import static Game.Game.Score;
+import static Game.Game.opponent;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -67,7 +68,8 @@ public class Connection implements Runnable {
                 Game.opponentScreenWidth = Integer.parseInt(new String(buffer, 0, packet.getLength()));
                 this.socket.receive(packet);
                 Game.opponentScreenHeight = Integer.parseInt(new String(buffer, 0, packet.getLength()));
-                
+
+                opponent.setScreenRatio();
             } catch (IOException e) {
                 break;
             }

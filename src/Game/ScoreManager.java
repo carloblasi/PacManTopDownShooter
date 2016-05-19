@@ -17,13 +17,13 @@ public class ScoreManager implements Serializable {
     private int[] multiplayerScores = {0, 0, 0, 0, 0};
 
     /**
-     *
+     * I due array di stringhe di puntegi sono pubblici perché vengono usati dalla classe LeaderboardState per essere scritti su schermo
      */
     public String[] scoreStrings;
     public String[] multiplayerScoreStrings;
 
     /**
-     *
+     * Inizializza lo ScoreManager
      */
     public ScoreManager() {
 
