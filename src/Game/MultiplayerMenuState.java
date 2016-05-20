@@ -53,6 +53,7 @@ public class MultiplayerMenuState {
                     Game.IPTextField.setText("");
                     Game.DestinationPortTextField.setText("");
                     Game.SourcePortTextField.setText("");
+                    Game.multiplayerGameID++;
                     Game.state = Game.MULTIPLAYERGAMEPLAYSTATE;
                 }
                 else {
@@ -92,6 +93,7 @@ public class MultiplayerMenuState {
                 Game.IPTextField.setText("");
                 Game.DestinationPortTextField.setText("");
                 Game.SourcePortTextField.setText("");
+                Game.multiplayerGameID++;
                 Game.state = Game.MULTIPLAYERGAMEPLAYSTATE;
             }
             else {

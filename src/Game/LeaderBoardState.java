@@ -4,6 +4,7 @@ import static Game.Game.Score;
 import static Game.Game.playFont;
 import static Game.Game.IPFont;
 import static Game.Game.menuButton;
+import static Game.Game.showMultiplayerScoresButton;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,6 +15,7 @@ public class LeaderBoardState {
 
     public static GameFont titleFont = playFont;
     public static GameFont highscoreFont = IPFont;
+    public static boolean showMultiplayerScores = false;
 
     /**
      * Metodo generico per aggiornare la logica degli oggetti della scena
@@ -33,6 +35,12 @@ public class LeaderBoardState {
                 Window.clear(input);
                 Game.state = Game.MENUSTATE;
             }
+
+            if (showMultiplayerScoresButton.isPressed()) {
+
+                Window.clear(input);
+                showMultiplayerScores = !showMultiplayerScores;
+            }
         }
 
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
@@ -42,19 +50,29 @@ public class LeaderBoardState {
         }
 
         menuButton.hoverEffect();
+        showMultiplayerScoresButton.hoverEffect();
     }
 
     public static void render(GameContainer gc, Graphics g) throws SlickException {
 
         titleFont.drawCenteredString("HIGHSCORES:", Window.HALF_WIDTH, Window.HEIGHT/4, Color.white);
 
-        Score.sortScores();
-        for (int i = 0; i < Score.scoreStrings.length; i++)
-            highscoreFont.drawCenteredString(Score.scoreStrings[i], Window.HALF_WIDTH - (int)(Window.WIDTH/5.8), (int)(Window.HEIGHT/2.6) + (i * 64), Color.white);
+        if (!showMultiplayerScores) {
 
-        Score.sortMultiplayerScores();
-        for (int i = 0; i < Score.multiplayerScoreStrings.length; i++)
-            highscoreFont.drawCenteredString(Score.multiplayerScoreStrings[i], Window.HALF_WIDTH + (int)(Window.WIDTH/5.8), (int)(Window.HEIGHT/2.6) + (i * 64), Color.white);
+            showMultiplayerScoresButton.render();
+            titleFont.drawCenteredString("SINGLE PLAYER", Window.HALF_WIDTH, Window.HEIGHT/4 - Window.WIDTH/20, Color.white);
+            Score.sortScores();
+            for (int i = 0; i < Score.scoreStrings.length; i++)
+                highscoreFont.drawCenteredString(Score.scoreStrings[i], Window.HALF_WIDTH, (int)(Window.HEIGHT/2.6) + (i * 64), Color.white);
+        }
+        else {
+
+            showMultiplayerScoresButton.render("SHOW SINGLE PLAYER HIGHSCORES");
+            titleFont.drawCenteredString("MULTIPLAYER", Window.HALF_WIDTH, Window.HEIGHT/4 - Window.WIDTH/20, Color.white);
+            Score.sortMultiplayerScores();
+            for (int i = 0; i < Score.multiplayerScoreStrings.length; i++)
+                highscoreFont.drawCenteredString(Score.multiplayerScoreStrings[i], Window.HALF_WIDTH, (int)(Window.HEIGHT/2.6) + (i * 64), Color.white);
+        }
 
         menuButton.render();
     }

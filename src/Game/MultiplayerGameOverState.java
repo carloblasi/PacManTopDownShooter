@@ -34,6 +34,7 @@ public class MultiplayerGameOverState {
             if (retryButton.isPressed()) {
 
                 Window.clear(input);
+                Game.multiplayerGameID++;
                 Game.state = Game.MULTIPLAYERGAMEPLAYSTATE;
             }
         }
@@ -49,6 +50,7 @@ public class MultiplayerGameOverState {
         if (input.isKeyPressed(Input.KEY_R)) {
 
             Window.clear(input);
+            Game.multiplayerGameID++;
             Game.state = Game.MULTIPLAYERGAMEPLAYSTATE;
         }
 

@@ -42,6 +42,7 @@ public class Game extends BasicGame {
     public static Button resumeButton;
     public static Button retryButton;
     public static Button serverButton;
+    public static Button showMultiplayerScoresButton;
 
     static GameFont bigFont;
     static GameFont playFont;
@@ -91,6 +92,7 @@ public class Game extends BasicGame {
     static String infoString = "";
     static String winnerString = "";
     public static int players = 0;
+    public static int multiplayerGameID = 0;
 
     static UDPServerThread server;
     static boolean isServer = false;
@@ -177,6 +179,7 @@ public class Game extends BasicGame {
         resumeButton = new Button("RESUME (R)", Window.HALF_WIDTH, Window.HALF_HEIGHT, 64, optionBlue);
         retryButton = new Button("RETRY (R)", Window.HALF_WIDTH, Window.HALF_HEIGHT, 64, optionBlue);
         serverButton = new Button("SERVER", Window.HALF_WIDTH, Window.HALF_HEIGHT + 40, 32, Color.red);
+        showMultiplayerScoresButton = new Button("SHOW MULTIPLAYER HIGHSCORES", Window.HALF_WIDTH, quitButton.getY() -  Window.HEIGHT/16, 24, Color.white);
 
         player = new Player();
         opponent = new Opponent();

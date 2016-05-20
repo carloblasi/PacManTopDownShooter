@@ -27,7 +27,7 @@ public class Player {
     private int ID = Game.players++;
 
     /**
-     *
+     * Inizializza il giocatore.
      */
     public Player() {
 
@@ -36,12 +36,12 @@ public class Player {
     }
 
     /**
-     *
-     * @param g
+     * Disegna il giocatore se è vivo.
+     * @param g L'oggetto grafico che permette di disegnare su schermo
      */
     public void render(Graphics g) {
 
-        if(isAlive()) {
+        if (isAlive()) {
 
             this.playerImage.drawCentered(this.Coordinates.x, this.Coordinates.y);
             this.playerImage.setRotation((float)this.rotation);
@@ -49,6 +49,9 @@ public class Player {
         }
     }
 
+    /**
+     * Carica l'immagine.
+     */
     public void loadImage() {
 
         try {
@@ -58,6 +61,11 @@ public class Player {
         }
     }
 
+    /**
+     * Aggiorna la posizione del giocatore in base all'input fornito.
+     * @param input L'oggetto che si occupa degli input da tastiera e da mouse
+     * @param delta {@code delta} del gioco
+     */
     public void update(Input input, int delta) {
 
         if (this.alive) {
@@ -96,8 +104,8 @@ public class Player {
     }
 
     /**
-     *
-     * @param enemies
+     * Controlla se il giocatore ha colliso con un nemico e diminuisce la sua vita nel caso sia successo.
+     * @param enemies La lista che contiene i nemici ancoara vivi
      * @throws SlickException
      */
     public void detectCollisionWithEnemies(ArrayList<Enemy> enemies) throws SlickException {
@@ -124,8 +132,8 @@ public class Player {
     }
 
     /**
-     *
-     * @param bullets
+     * Controlla se il giocatore ha colliso con un proiettile e diminuisce la sua vita nel caso sia successo.
+     * @param bullets La lista che contiene i proiettili sparati
      * @throws SlickException
      */
     public void detectCollisionWithBullet(ArrayList<Bullet> bullets) throws SlickException {
@@ -147,8 +155,8 @@ public class Player {
     }
 
     /**
-     *
-     * @param ammos
+     * Controlla se ha preso delle munizioni e aumenta le munizioni a disposizione se è successo.
+     * @param ammos Il vettore che contiene le munizioni da prendere
      * @throws SlickException
      */
     public void checkIfPickedUpAmmos(Ammo[] ammos) throws SlickException {
@@ -165,6 +173,12 @@ public class Player {
         }
     }
 
+    /**
+     * Calcola l'angolo (compreso tra 0 e 359 inclusi) formato dalla posizione del giocatore e dalla posizione del puntatore.
+     * @param firstPoint Coordinate del giocatore
+     * @param secondPoint Coordinate del puntatore
+     * @return l'angolo
+     */
     private double getAngleFromPoint(Point firstPoint, Point secondPoint) {
 
         double r;
@@ -185,10 +199,10 @@ public class Player {
     }
 
     /**
-     *
+     * Colpisce il giocatore e gli toglie un po' di vita.
      */
     public void hit() {
-        health -= this.damage;
+        this.health -= this.damage;
     }
 
     public int getHealth() {
@@ -224,7 +238,7 @@ public class Player {
     }
 
     /**
-     *
+     * Ripristina le condizioni iniziali del giocatore.
      */
     public void reset() {
 
