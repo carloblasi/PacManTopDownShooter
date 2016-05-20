@@ -6,7 +6,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
-import javax.swing.JOptionPane;
 
 /**
  * Rappresenta la connessione tra due giocatori.
@@ -152,11 +151,15 @@ public class Connection implements Runnable {
     }
 
     /**
-     *
+     * Ritorna la stringa che contiene le informazioni
      * @return l'ultima posizione e vita del secondo giocatore
      */
     public String getOpponentPosition() {
         return this.opponentPosition;
+    }
+
+    public boolean isRunning() {
+        return this.running;
     }
 
     /*public Info getInfo() {

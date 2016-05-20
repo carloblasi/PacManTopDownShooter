@@ -11,6 +11,11 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Random;
 
+/**
+ * Rappresenta il server che ha il compito di inviare a intervalli regolari le posizioni dei nuovi nemici
+ * in una parita multiplayer.
+ * @author carloblasi
+ */
 public class UDPServerThread extends Thread {
 
     private static HashMap<Integer, InetAddress> portMap = new HashMap<>();
@@ -52,6 +57,10 @@ public class UDPServerThread extends Thread {
         this.isRunning = isRunning;
     }
 
+    /**
+     * Aspetta che due client siano connessi, poi inizia a generare e inviare nuove posizioni per i nemici
+     * in una partita multiplayer.
+     */
     @Override
     public void run() {
 
@@ -112,6 +121,10 @@ public class UDPServerThread extends Thread {
         }
     }
 
+    /**
+     * Crea una posizione random per i nemici, partendo da fuori lo schermo.
+     * Genera anche un indice per il colore del nemico e un indice per dire al nemico che giocatore seguire.
+     */
     private void createPosition() {
 
         switch (new Random().nextInt(4)) {

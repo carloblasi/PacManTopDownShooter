@@ -26,6 +26,7 @@ import java.util.LinkedList;
 
 public class Game extends BasicGame {
 
+    public static GameContainer container;
     static Input input;
     public static int mouseX, mouseY;
     static final int MENUSTATE = 0, GAMEPLAYSTATE = 1, MULTIPLAYERMENUSTATE = 2, MULTIPLAYERGAMEPLAYSTATE = 3,
@@ -130,6 +131,11 @@ public class Game extends BasicGame {
         super(title);
     }
 
+    /**
+     * Inizializza tutte le variabili del gioco.
+     * @param gc {@code GameContainer} del gioco
+     * @throws SlickException
+     */
     @Override
     public void init(GameContainer gc) throws SlickException {
 
@@ -266,6 +272,12 @@ public class Game extends BasicGame {
         }
     }
 
+    /**
+     * Metodo generico per aggiornare la logica degli oggetti di tutto il gioco
+     * @param gc {@code GameContainer} del gioco
+     * @param g L'oggetto che si occupa di disergnare su schermo
+     * @throws SlickException
+     */
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
 

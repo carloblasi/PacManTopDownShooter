@@ -136,6 +136,7 @@ public class GamePlayState {
 
         smallFont.drawString("Score: " + Score.getScore(), 12, 12, Color.white);
         smallFont.drawString("Ammos: " + player.getAmmos(), 12, 36, Color.yellow);
+        smallFont.drawCenteredString("PAUSE (ESC)", Window.HALF_WIDTH, 24, Color.red);
     }
 
     public static void addBullet(int x, int y) {

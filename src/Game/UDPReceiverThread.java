@@ -5,6 +5,10 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
+/**
+ * Rappresenta il thread che sta sempre in ascolto del server per la posizione di un nuovo nemico.
+ * @author carloblasi
+ */
 class UDPReceiverThread extends Thread {
 
     private DatagramSocket udpClientSocket = null;
@@ -12,6 +16,11 @@ class UDPReceiverThread extends Thread {
     private String serverReply;
     private String[] enemyPosition;
 
+    /**
+     * Inizializza il Receiver.
+     * @param udpClientSocket Il socket sul server
+     * @throws SocketException
+     */
     public UDPReceiverThread(DatagramSocket udpClientSocket) throws SocketException {
         this.udpClientSocket = udpClientSocket;
     }
@@ -20,6 +29,10 @@ class UDPReceiverThread extends Thread {
         this.stopped = true;
     }
 
+    /**
+     * Sta sempre in ascolto per una nuova posizione, se la stringa che arriva è valida (non vuota), crea un
+     * nuovo nemico nella partita multiplayer con la posizione ricevuta.
+     */
     @Override
     public void run() {
 

@@ -84,14 +84,13 @@ public class Bullet {
 
     /**
      * Rimuove (smette di disegnare) il proiettile se è uscito dallo schermo.
-     * @param gc
+     * @param gc Il {@code GameContainer} del gioco
      */
     public void removeFromGameIfOutOfBounds(GameContainer gc) {
 
         if (this.isOutOfBounds(gc)) {
 
             this.fired = false;
-            //this.Coordinates.setLocation(1000, 1000);
         }
     }
 

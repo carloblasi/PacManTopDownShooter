@@ -105,6 +105,7 @@ public class Player {
 
     /**
      * Controlla se il giocatore ha colliso con un nemico e diminuisce la sua vita nel caso sia successo.
+     * Rimuove anche il nemico dalla lista che lo contiene.
      * @param enemies La lista che contiene i nemici ancoara vivi
      * @throws SlickException
      */

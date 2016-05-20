@@ -8,12 +8,24 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
+/**
+ * Rappresenta il thread che invia informazioni al server.
+ * Non viene usato nel gioco. Viene invece usato un oggetto della classe {@code Connection} per inviare
+ * informazioni tra i client.
+ * @author carloblasi
+ */
 class UDPSenderThread extends Thread {
 
     private InetAddress serverIPAddress;
     private DatagramSocket udpClientSocket;
     private int serverPort;
 
+    /**
+     * Inizializza il "messaggero".
+     * @param address L'indirizzo del server
+     * @param serverPort La porta del server
+     * @throws SocketException
+     */
     public UDPSenderThread(InetAddress address, int serverPort) throws SocketException {
 
         this.serverIPAddress = address;

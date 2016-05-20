@@ -23,7 +23,7 @@ public class ScoreManager implements Serializable {
     public String[] multiplayerScoreStrings;
 
     /**
-     * Inizializza lo ScoreManager
+     * Inizializza lo ScoreManager.
      */
     public ScoreManager() {
 
@@ -31,6 +31,9 @@ public class ScoreManager implements Serializable {
         this.multiplayerScoreStrings = new String[this.multiplayerScores.length];
     }
 
+    /**
+     * Aumenta il punteggio di 10.
+     */
     public void incrementScore() {
         this.score += 10;
     }

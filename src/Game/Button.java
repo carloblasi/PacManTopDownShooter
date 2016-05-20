@@ -137,7 +137,6 @@ public class Button {
             input.getMouseY() > (this.y - this.font.getStringHeight(this.text)/2) && input.getMouseY() < (this.y + this.font.getStringHeight(this.text)/2)) {
 
             this.textColor = this.darkerColor;
-
         } else {
             this.textColor = this.originalColor;
         }
@@ -155,7 +154,6 @@ public class Button {
             input.getMouseY() > (y - this.font.getStringHeight(this.text)/2) && input.getMouseY() < (y + this.font.getStringHeight(this.text)/2)) {
 
             this.textColor = this.darkerColor;
-
         } else {
             this.textColor = this.originalColor;
         }
@@ -205,8 +203,12 @@ public class Button {
     public int getX() {
         return this.x;
     }
-    
+
     public int getY() {
         return this.y;
+    }
+
+    public Color getColor() {
+        return this.textColor;
     }
 }

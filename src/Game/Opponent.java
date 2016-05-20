@@ -56,8 +56,8 @@ public class Opponent {
     }*/
 
     /**
-     *
-     * @param g
+     * Disegna il secondo giocaotore se è vivo.
+     * @param g La grafica del gioco
      */
     public void render(Graphics g) {
 
@@ -82,10 +82,10 @@ public class Opponent {
     }
 
     /**
-     * 
-     * @param oppCoordinates
-     * @param x
-     * @param y
+     * Aggiorna la posizione del secondo giocatore in base alle coordinate che arrivano dalla classe {@code Connection}.
+     * @param oppCoordinates Coordinate in cui spostare il secondo giocatore
+     * @param x Coordinata X del mouse del secondo giocatore
+     * @param y Coordinata Y del mouse del secondo giocatore
      */
     public void update(Point oppCoordinates, int x, int y) {
 
@@ -110,6 +110,11 @@ public class Opponent {
         }
     }
 
+    /**
+     * Controlla se il secondo giocatore ha colliso con un proiettile e diminuisce la sua vita nel caso sia successo.
+     * @param bullets La lista che contiene i proiettili sparati
+     * @throws SlickException
+     */
     public void detectCollisionWithBullet(Bullet[] bullets) throws SlickException {
 
         for (Bullet bullet : bullets) {
@@ -123,6 +128,11 @@ public class Opponent {
         }
     }
 
+    /**
+     * Controlla se il secondo giocatore ha colliso con un proiettile e diminuisce la sua vita nel caso sia successo.
+     * @param bullets La lista che contiene i proiettili sparati
+     * @throws SlickException
+     */
     public void detectCollisionWithBullet(ArrayList<Bullet> bullets) throws SlickException {
 
         Iterator<Bullet> iter = bullets.iterator();
@@ -142,8 +152,9 @@ public class Opponent {
     }
 
     /**
-     *
-     * @param enemies
+     * Controlla se il secondo giocatore ha colliso con un nemico e diminuisce la sua vita nel caso sia successo.
+     * Rimuove anche il nemico dalla lista che lo contiene.
+     * @param enemies La lista che contiene i nemici ancoara vivi
      * @throws SlickException
      */
     public void detectCollisionWithEnemies(ArrayList<Enemy> enemies) throws SlickException {
@@ -169,6 +180,12 @@ public class Opponent {
         }
     }
 
+    /**
+     * Calcola l'angolo (compreso tra 0 e 359 inclusi) formato dalla posizione del secondo giocatore e dalla posizione del puntatore.
+     * @param firstPoint Coordinate del secondo giocatore
+     * @param secondPoint Coordinate del puntatore
+     * @return l'angolo
+     */
     private double getAngleFromPoint(java.awt.Point firstPoint, java.awt.Point secondPoint) {
 
         double r;
@@ -188,6 +205,9 @@ public class Opponent {
         return r;
     }
 
+    /**
+     * Colpisce il secondo giocatore e gli toglie un po' di vita.
+     */
     public void hit() {
         health -= this.damage;
     }
@@ -220,6 +240,9 @@ public class Opponent {
         return this.ID;
     }
 
+    /**
+     * Ripristina le condizioni iniziali del secondo giocatore.
+     */
     public void reset() {
 
         this.alive = true;
