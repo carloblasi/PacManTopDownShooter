@@ -36,6 +36,7 @@ public class GameOverState {
             if (retryButton.isPressed()) {
 
                 Window.clear(input);
+                Game.openingSound.play();
                 Game.state = Game.GAMEPLAYSTATE;
             }
         }
@@ -49,6 +50,7 @@ public class GameOverState {
         if (input.isKeyPressed(Input.KEY_R)) {
 
             Window.clear(input);
+            Game.openingSound.play();
             Game.state = Game.GAMEPLAYSTATE;
         }
 

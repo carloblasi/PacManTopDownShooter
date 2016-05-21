@@ -23,6 +23,7 @@ import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
 import java.util.LinkedList;
+import org.newdawn.slick.Sound;
 
 public class Game extends BasicGame {
 
@@ -87,6 +88,8 @@ public class Game extends BasicGame {
     static Point opponentCoordinates = new Point(Window.HALF_WIDTH, Window.HALF_HEIGHT);
     static Point opponentMouseCoordinates = new Point();
     static int opponentScreenHeight = 0, opponentScreenWidth = 0;
+    public static Sound openingSound;
+    public static Sound shootSound;
 
     static Connection connection;
     static InetSocketAddress address;
@@ -200,6 +203,8 @@ public class Game extends BasicGame {
             ghosts[1] = new Image("Images/Blinky.png");
             ghosts[2] = new Image("Images/Inky.png");
             ghosts[3] = new Image("Images/Pinky.png");
+            openingSound = new Sound("Sounds/openingSound.wav");
+            shootSound = new Sound("Sounds/pacmanShoot.wav");
 
             ObjectInputStream inStream = new ObjectInputStream(new FileInputStream("pmmtds.scores"));
             Score = (ScoreManager) inStream.readObject();
@@ -212,6 +217,7 @@ public class Game extends BasicGame {
             System.out.println("ONE OR MORE IMAGES NOT FOUND");
         }
         Score.resetScore();
+
     }
 
     /**

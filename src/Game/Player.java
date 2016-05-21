@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Point;
 import java.util.ConcurrentModificationException;
+import org.newdawn.slick.Sound;
 
 /**
  * Rappresenta il giocatore sia in single player che in multiplayer.
@@ -169,6 +170,7 @@ public class Player {
                                   (ammo.getY() - this.getY()) * (ammo.getY() - this.getY())) <=
                                    this.radius + ammo.getRadius()) {
                         ammo.pick();
+                        new Sound("Sounds/pacmanPickedAmmo.wav").play();
                         this.ammos += 50;
                     }
         }

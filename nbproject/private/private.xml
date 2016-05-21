@@ -4,7 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/carloblasi/NetBeansProjectsGit/pmmtdsgame/src/Game/Game.java</file>
-            <file>file:/Users/carloblasi/NetBeansProjectsGit/pmmtdsgame/src/Game/Opponent.java</file>
+            <file>file:/Users/carloblasi/NetBeansProjectsGit/pmmtdsgame/src/Game/GamePlayState.java</file>
+            <file>file:/Users/carloblasi/NetBeansProjectsGit/pmmtdsgame/src/Game/GameOverState.java</file>
+            <file>file:/Users/carloblasi/NetBeansProjectsGit/pmmtdsgame/src/Game/MenuState.java</file>
+            <file>file:/Users/carloblasi/NetBeansProjectsGit/pmmtdsgame/src/Game/Player.java</file>
         </group>
     </open-files>
 </project-private>

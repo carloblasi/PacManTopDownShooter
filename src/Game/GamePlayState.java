@@ -27,6 +27,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import java.util.Iterator;
 import java.util.Random;
+import org.newdawn.slick.Sound;
 
 public class GamePlayState {
 
@@ -64,15 +65,14 @@ public class GamePlayState {
                 Game.state = Game.PAUSESTATE;
             }
 
-            if (player.isAlive()) {
-                if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && canFire <= 0) {
-
+            if (player.isAlive())
+                if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && canFire <= 0)
                     addBullet(mouseX, mouseY);
-                    canFire = BULLET_DELAY;
-                }
-            }
+
 
             if (!player.isAlive()) {
+
+                new Sound("Sounds/pacmanDeath.wav").play();
                 gameOver(input);
             }
 
@@ -145,6 +145,8 @@ public class GamePlayState {
 
             bulletList.add(new Bullet(player.getX(), player.getY(), x, y));
             player.removeAmmo();
+            Game.shootSound.play(1.0f, 0.3f);
+            canFire = BULLET_DELAY;
         }
     }
 
